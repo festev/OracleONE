@@ -11,5 +11,5 @@ En este desafío, desarrollarás una aplicación que permita a los usuarios ingr
 -   **Visualizar la lista:** Los nombres ingresados aparecerán en una lista debajo del campo de entrada.
 -   **Sorteo aleatorio:** Al hacer clic en el botón **"Sortear Amigo"**, se seleccionará aleatoriamente un nombre de la lista y se mostrará en la página.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk2NDI3OTg3MiwtMTU0OTMxNTkzNl19
+eyJoaXN0b3J5IjpbLTk2NDI3OTg3Ml19
 -->
