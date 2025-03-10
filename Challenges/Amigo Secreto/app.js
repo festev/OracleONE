@@ -20,3 +20,11 @@ function agregarAmigo(){
         campoTexto.value = "";
     }
 }
+
+function sortearAmigo(){
+    let listaResultados = document.querySelector("#listaResultados");
+
+    indiceAleatorio = Math.floor(Math.random() * amigos.length);
+    listaResultados.style.display = "block";
+    listaResultados.innerHTML = `<li>El amigo secreto sorteado es: <span>${amigos[indiceAleatorio]}</span></li>`
+}

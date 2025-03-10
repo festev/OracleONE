@@ -176,13 +176,35 @@ ul {
     font-size: 14px; /* Tamaño del icono */
 }
 
-.result-list {
+/*.result-list {
     margin-top: 15px;
     color: #05DF05;
     font-size: 22px;
     font-weight: bold;
     text-align: center;
-}
+}*/
+
+.result-list {
+    margin-top: 15px;
+    color: #2c3e50;; /* Color base del texto */
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px; /* Espaciado interno */
+    background-color: #f0f0f0; /* Fondo claro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 6px 6px rgba(20, 20, 460, 0.4); /* Sombra suave */
+    transition: all 0.3s ease; /* Transición suave */
+  }
+  
+  .result-list:hover {
+    box-shadow: 0 6px 12px rgba(171, 46, 46, 0.5); /* Sombra más pronunciada */
+  }
+  
+  .result-list span {
+    color: #37a200; /* Color verde oscuro para el nombre */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra de texto */
+  }
 
 /* Botón de sortear título */
 .button-draw {
