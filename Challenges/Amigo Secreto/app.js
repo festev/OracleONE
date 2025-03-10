@@ -1,4 +1,5 @@
 let amigos = [];
+let cont_item_id = 0;
 
 function agregarAmigo(){
     //obtenemos los elementos
@@ -13,8 +14,6 @@ function agregarAmigo(){
     else{ //si no está vacío, agregamos el amigo
         amigos.push(campoTexto.value);
 
-        console.log("abcdef".match("a","b","f","h"));
-
         if(amigos.length == 1){ //activa la lista y el botón 'Borrar todo'
             bttnErase.disabled = false;
             listaAmigos.style.display = "block";
@@ -24,10 +23,18 @@ function agregarAmigo(){
             bttnDraw.disabled = false;
         }
 
-        //agregamos el amigo a la lista seguro de inyecciones
+        //agregamos el amigo a la lista, seguro de inyecciones
         const li = document.createElement("li");
         li.textContent = amigos[amigos.length-1];
+        li.id = `item-amigo${cont_item_id}`
         listaAmigos.appendChild(li);
+        const bttn = document.createElement("button");
+        bttn.id = `bttn-amigo${cont_item_id}`;
+        bttn.className = "bttn-x";
+        cont_item_id++;
+        bttn.innerHTML = "❌";
+        bttn.setAttribute
+        li.appendChild(bttn);
 
         campoTexto.value = "";
     }
