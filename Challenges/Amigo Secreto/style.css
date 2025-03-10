@@ -125,13 +125,55 @@ button {
     background-color: #a1a1a1;
 }
 
+.button-draw:disabled {
+    pointer-events: none; /* Esto deshabilita los clics */
+    opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
+  }
+
 /* Listas */
 ul {
+    display: none;
     list-style-type: none;
     color: var(--color-text);
     font-family: "Inter", sans-serif;
     font-size: 18px;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
+}
+
+#listaAmigos {
+    list-style-type: none; /* Quita los puntos de la lista */
+    padding: 20px; /* Elimina el padding predeterminado */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 400px; /* Limita el ancho máximo */
+    font-family: 'Arial', sans-serif; /* Fuente moderna */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #f9f9f9; /* Fondo claro */
+    overflow: hidden; /* Oculta el desbordamiento */
+}
+
+.name-list li {
+    padding: 12px 20px; /* Espaciado interno */
+    border-bottom: 1px solid #e0e0e0; /* Borde inferior entre elementos */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #333; /* Color de texto */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+}
+  
+.name-list li:last-child {
+    border-bottom: none; /* Quita el borde del último elemento */
+}
+  
+.name-list li:hover {
+    background-color: #e3f2fd; /* Cambia el color de fondo al pasar el mouse */
+    transform: translateX(20px); /* Desplaza ligeramente el elemento */
+    cursor: pointer; /* Cambia el cursor a una mano */
+}
+  
+.name-list li::before {
+    content: "🔹"; /* Icono de regalo antes de cada nombre */
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+    font-size: 14px; /* Tamaño del icono */
 }
 
 .result-list {
@@ -144,6 +186,7 @@ ul {
 
 /* Botón de sortear título */
 .button-draw {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     width: 100%;
