@@ -1,22 +1,34 @@
 let amigos = [];
 
 function agregarAmigo(){
+    //obtenemos los elementos
     let campoTexto = document.querySelector("#amigo");
     let listaAmigos = document.querySelector("#listaAmigos");
     let bttnDraw = document.querySelector(".button-draw");
+    let bttnErase = document.querySelector(".button-erase");
 
-    if (campoTexto.value == ""){
+    if (campoTexto.value === "" || campoTexto.value.trim() === ""){ //si no hay texto en el campo o todos son espacios, da una alerta de error
         alert("ERROR: No hay ningún nombre ingresado. Por favor, inserte un nombre.")
     }
-    else{
+    else{ //si no está vacío, agregamos el amigo
         amigos.push(campoTexto.value);
 
-        if(amigos.length == 2){
+        console.log("abcdef".match("a","b","f","h"));
+
+        if(amigos.length == 1){ //activa la lista y el botón 'Borrar todo'
+            bttnErase.disabled = false;
+            listaAmigos.style.display = "block";
+        }
+
+        if(amigos.length == 2){ //activa el botón 'Sortear amigo'
             bttnDraw.disabled = false;
         }
 
-        listaAmigos.style.display = "block";
-        listaAmigos.innerHTML += `<li>${amigos[amigos.length-1]}</li>`;
+        //agregamos el amigo a la lista seguro de inyecciones
+        const li = document.createElement("li");
+        li.textContent = amigos[amigos.length-1];
+        listaAmigos.appendChild(li);
+
         campoTexto.value = "";
     }
 }
@@ -24,7 +36,34 @@ function agregarAmigo(){
 function sortearAmigo(){
     let listaResultados = document.querySelector("#listaResultados");
 
+    //elegimos un amigo al azar
     indiceAleatorio = Math.floor(Math.random() * amigos.length);
     listaResultados.style.display = "block";
-    listaResultados.innerHTML = `<li>El amigo secreto sorteado es: <span>${amigos[indiceAleatorio]}</span></li>`
+
+    //mostramos el resultado, seguro de inyecciones
+    const li = document.createElement("li");
+    li.textContent = "El amigo secreto sorteado es: ";
+    const span = document.createElement("span");
+    span.textContent = amigos[indiceAleatorio]; //evita inyecciones
+    li.appendChild(span);
+    listaResultados.innerHTML = ""; //limpia antes de agregar el nuevo resultado
+    listaResultados.appendChild(li);
+}
+
+function borrarTodo(){ //reiniciamos todo
+    let campoTexto = document.querySelector("#amigo");
+    let listaAmigos = document.querySelector("#listaAmigos");
+    let listaResultados = document.querySelector("#listaResultados");
+    let bttnDraw = document.querySelector(".button-draw");
+    let bttnErase = document.querySelector(".button-erase");
+    
+
+    listaAmigos.innerHTML = "";
+    listaResultados.innerHTML = "";
+    campoTexto.value = "";
+    amigos = [];
+    listaAmigos.style.display = "none";
+    listaResultados.style.display = "none";
+    bttnDraw.disabled = true;
+    bttnErase.disabled = true;
 }

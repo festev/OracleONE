@@ -1,6 +1,6 @@
 :root {
     --color-primary: #4B69FD;
-    --color-secondary: #FFF9EB;
+    --color-secondary: #fff9ebf3;
     --color-tertiary: #C4C4C4;
     --color-button: #fe652b;
     --color-button-hover: #e55720;
@@ -88,8 +88,11 @@ body {
 }
 
 .button-container {
+    margin: 20px;
+    gap: 10px;
     width: 300px;
     justify-content: center;
+    display:flex;
 }
 
 /* Estilos de entrada de texto */
@@ -125,11 +128,6 @@ button {
     background-color: #a1a1a1;
 }
 
-.button-draw:disabled {
-    pointer-events: none; /* Esto deshabilita los clics */
-    opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
-  }
-
 /* Listas */
 ul {
     display: none;
@@ -141,7 +139,6 @@ ul {
 }
 
 #listaAmigos {
-    list-style-type: none; /* Quita los puntos de la lista */
     padding: 20px; /* Elimina el padding predeterminado */
     width: 100%; /* Ocupa todo el ancho disponible */
     max-width: 400px; /* Limita el ancho máximo */
@@ -208,7 +205,6 @@ ul {
 
 /* Botón de sortear título */
 .button-draw {
-    margin-top: 20px;
     display: flex;
     align-items: center;
     width: 100%;
@@ -216,6 +212,27 @@ ul {
     color: var(--color-white);
     background-color: var(--color-button);
     font-size: 16px;
+}
+
+.button-draw:disabled {
+    pointer-events: none; /* Esto deshabilita los clics */
+    opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
+}
+
+/* Botón de borrar todo */
+.button-erase {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
+    color: var(--color-white);
+    background-color: crimson;
+    font-size: 16px;
+}
+
+.button-erase:disabled {
+    pointer-events: none; /* Esto deshabilita los clics */
+    opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
 }
 
 .button-draw img {
