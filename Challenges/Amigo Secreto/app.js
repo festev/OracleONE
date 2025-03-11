@@ -1,5 +1,4 @@
 let amigos = [];
-let cont_item_id = 0;
 
 function agregarAmigo(){
     //obtenemos los elementos
@@ -9,7 +8,7 @@ function agregarAmigo(){
     let bttnErase = document.querySelector(".button-erase");
 
     if (campoTexto.value === "" || campoTexto.value.trim() === ""){ //si no hay texto en el campo o todos son espacios, da una alerta de error
-        alert("ERROR: No hay ningún nombre ingresado. Por favor, inserte un nombre.")
+        mostrarToast("¡No hay ningún nombre ingresado!");
         campoTexto.value = "";
     }
     else{ //si no está vacío, agregamos el amigo
@@ -24,18 +23,7 @@ function agregarAmigo(){
             bttnDraw.disabled = false;
         }
 
-        //agregamos el amigo a la lista, seguro de inyecciones
-        const li = document.createElement("li");
-        li.textContent = amigos[amigos.length-1];
-        li.id = `item-amigo${cont_item_id}`
-        listaAmigos.appendChild(li);
-        const bttn = document.createElement("button");
-        bttn.id = `bttn-amigo${cont_item_id}`;
-        bttn.className = "bttn-x";
-        cont_item_id++;
-        bttn.innerHTML = "❌";
-        bttn.onclick = mostrarToast;
-        li.appendChild(bttn);
+        update(100)
 
         campoTexto.value = "";
     }
@@ -76,17 +64,82 @@ function borrarTodo(){ //reiniciamos todo
     bttnErase.disabled = true;
 }
 
-function mostrarToast(){
+function mostrarToast(descripcion){
+    
+    const toast = document.createElement("div"); //creando el toast
+
+    //le damos la descripción y la clase
+    toast.textContent = descripcion;
+    toast.className = "toast";
+
+    //agregando el toast al DOM para que "exista"
+    document.body.appendChild(toast);
+
     //muestra el toast
-    let toast = document.getElementById("toast");
-    toast.style.visibility = "visible";
+    setTimeout(function(){
     toast.style.opacity = "1";
+    }, 10); //le dejamos un tiempo al navegador que procese al toast (sino no me funciona)
 
     //esconde el toast
     setTimeout(function(){
         toast.style.opacity = "0";
         setTimeout(function(){
-            toast.style.visibility = "hidden";
-        }, 3000); // Segundo paso: Se oculta después de 3 segundos (esto es para no poder interactuar con el elemento aunque no tenga opacidad)
+            toast.remove();
+        }, 500); // Segundo paso: Se oculta después de 3 segundos (esto es para no poder interactuar con el elemento aunque no tenga opacidad)
     }, 3000); // Primer paso: Se saca la opacidad después de 3 segundos
+}
+
+function update(ms){
+    //obtener elementos para desactivar
+    const bttnDraw = document.querySelector(".button-draw");
+    const bttnErase = document.querySelector(".button-erase");
+    const bttnUpdate = document.querySelector(".button-update");
+    const bttnAdd = document.querySelector(".button-add");
+    const campoTexto = document.querySelector("#amigo");
+
+    //obtener lista <ul> y vaciarla
+    const listaAmigos = document.querySelector("#listaAmigos");
+    listaAmigos.innerHTML = "";
+
+    //desactivar elementos para no poder interactuar mientras se actualiza la lista
+    bttnDraw.disabled = true;
+    bttnErase.disabled = true;
+    bttnUpdate.disabled = true;
+    bttnAdd.disabled = true;
+    campoTexto.onkeydown = null;
+
+    //usamos el for pedido en la tarjeta Trello
+    for (let i = 0; i < amigos.length; i++) {
+        setTimeout(() => {
+            agregarLiAmigo(i); 
+        }, i * ms);  //esto permite que los elementos aparezcan en forma cascada
+    }
+    bttnDraw.disabled = false;
+    bttnErase.disabled = false;
+    bttnUpdate.disabled = false;
+    bttnAdd.disabled = false;
+    campoTexto.onkeydown = function(event){if(event.key === 'Enter') agregarAmigo()};
+
+}
+
+function agregarLiAmigo(index){
+
+    const listaAmigos = document.querySelector("#listaAmigos");
+
+    //agregamos el amigo a la lista, seguro de inyecciones
+    const li = document.createElement("li");
+    li.textContent = amigos[index];
+    listaAmigos.appendChild(li);
+    const bttn = document.createElement("button");
+    bttn.className = "bttn-x";
+    bttn.innerHTML = "❌";
+    bttn.onclick = function(){borrarAmigo(index);};
+    li.appendChild(bttn);
+}
+
+function borrarAmigo(index){
+
+    let nombre_amigo = amigos.splice(index,1)
+    update(0);
+    mostrarToast(`¡Amigo '${nombre_amigo[0]}' eliminado exitosamente!`)
 }

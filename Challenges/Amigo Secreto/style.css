@@ -94,6 +94,7 @@ body {
     width: 300px;
     justify-content: center;
     display:flex;
+    max-height: 60px;
 }
 
 /* Estilos de entrada de texto */
@@ -125,6 +126,10 @@ button {
     border-radius: 0 25px 25px 0;
     box-shadow: none;
     border-left-width: 1px;
+}
+
+.button-add:disabled {
+    pointer-events: none; /* Esto deshabilita los clics */
 }
 
 .button-add:hover {
@@ -230,26 +235,10 @@ ul{
     background-color: var(--color-button);
     font-size: 16px;
     border: 0;
+    flex-grow: 1;
 }
 
 .button-draw:disabled {
-    pointer-events: none; /* Esto deshabilita los clics */
-    opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
-}
-
-/* Botón de borrar todo */
-.button-erase {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 10px 40px;
-    color: var(--color-white);
-    background-color: crimson;
-    font-size: 16px;
-    border: 0;
-}
-
-.button-erase:disabled {
     pointer-events: none; /* Esto deshabilita los clics */
     opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
 }
@@ -262,8 +251,52 @@ ul{
     background-color: var(--color-button-hover);
 }
 
-#toast{
-    visibility: hidden;
+/* Botón de borrar todo */
+.button-erase {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
+    color: var(--color-white);
+    background-color: crimson;
+    font-size: 16px;
+    border: 0;
+    flex-grow: 1;
+}
+
+.button-erase:disabled {
+    pointer-events: none; /* Esto deshabilita los clics */
+    opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
+}
+
+.button-erase:hover {
+    background-color: #c61337;
+}
+
+.button-update{
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 10px;
+    transition: transform 0.5s ease;
+}
+
+.button-update img{
+    height: 60%;
+}
+
+.button-update:disabled {
+    pointer-events: none; /* Esto deshabilita los clics */
+    opacity: 0.5; /* Esto hace que el botón se vea deshabilitado */
+}
+
+.button-update:hover {
+    transform: rotate(180deg); /* Gira 180 grados */
+}
+
+.toast{
     top: 20%;
     left: 50%;
     position: fixed;
@@ -278,4 +311,5 @@ ul{
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    pointer-events: none; /* evita que el usuario interactúe con el toast*/
 }
