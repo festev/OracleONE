@@ -10,6 +10,7 @@ function agregarAmigo(){
 
     if (campoTexto.value === "" || campoTexto.value.trim() === ""){ //si no hay texto en el campo o todos son espacios, da una alerta de error
         alert("ERROR: No hay ningún nombre ingresado. Por favor, inserte un nombre.")
+        campoTexto.value = "";
     }
     else{ //si no está vacío, agregamos el amigo
         amigos.push(campoTexto.value);
@@ -33,7 +34,7 @@ function agregarAmigo(){
         bttn.className = "bttn-x";
         cont_item_id++;
         bttn.innerHTML = "❌";
-        bttn.setAttribute
+        bttn.onclick = mostrarToast;
         li.appendChild(bttn);
 
         campoTexto.value = "";
@@ -73,4 +74,19 @@ function borrarTodo(){ //reiniciamos todo
     listaResultados.style.display = "none";
     bttnDraw.disabled = true;
     bttnErase.disabled = true;
+}
+
+function mostrarToast(){
+    //muestra el toast
+    let toast = document.getElementById("toast");
+    toast.style.visibility = "visible";
+    toast.style.opacity = "1";
+
+    //esconde el toast
+    setTimeout(function(){
+        toast.style.opacity = "0";
+        setTimeout(function(){
+            toast.style.visibility = "hidden";
+        }, 3000); // Segundo paso: Se oculta después de 3 segundos (esto es para no poder interactuar con el elemento aunque no tenga opacidad)
+    }, 3000); // Primer paso: Se saca la opacidad después de 3 segundos
 }
