@@ -19,5 +19,5 @@ En este desafío, desarrollarás una aplicación que permita a los usuarios ingr
 Trello: https://trello.com/b/v0TFbgqP/trello-challenge-amigo-secreto-esp
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk2NDI3OTg3Ml19
+eyJoaXN0b3J5IjpbLTQ0MDE3NjExNCwtOTY0Mjc5ODcyXX0=
 -->
